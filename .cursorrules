@@ -1,0 +1,265 @@
+# Naylence Website - Cursor Rules & Guidelines
+
+## Project Overview
+This is the official website for Naylence.ai - a framework for building networks of distributed AI agents. The site is built with React, Tailwind CSS, and deployed on Vercel.
+
+## Tech Stack
+- **Framework**: React (with hooks)
+- **Styling**: Tailwind CSS
+- **Icons**: Lucide React
+- **Deployment**: Vercel
+- **Build Tool**: Vite (assumed, verify with package.json)
+
+## Design System & Branding
+
+### Color Palette
+- **Primary Background**: `#020808` (Deep Teal/Black)
+- **Secondary Background**: `#030c0c` (Slightly lighter dark)
+- **Primary Accent**: Teal (`teal-400`, `teal-500`, `teal-600`)
+- **Secondary Accent**: Emerald (`emerald-500`)
+- **Text Primary**: White (`text-white`)
+- **Text Secondary**: Slate (`slate-300`, `slate-400`, `slate-500`)
+- **Borders**: Teal with opacity (`border-teal-900/30`, `border-teal-800/50`)
+
+### Typography
+- **Font**: Sans-serif (default)
+- **Headings**: Bold, tracking-tight
+- **Body**: Regular weight, leading-relaxed
+- **Code**: Monospace font (`font-mono`)
+
+### Design Principles
+1. **Dark Theme**: Deep teal/black base with subtle gradients
+2. **Glassmorphism**: Use backdrop-blur and semi-transparent backgrounds
+3. **Subtle Animations**: Hover effects, transitions, and micro-interactions
+4. **Spacing**: Generous padding and margins (py-24, px-4, gap-8)
+5. **Borders**: Subtle teal borders with low opacity
+6. **Shadows**: Teal-tinted shadows for depth (`shadow-[0_0_15px_-5px_rgba(20,184,166,0.3)]`)
+
+## Code Style Guidelines
+
+### React Components
+- Use functional components with hooks
+- Prefer `const` over `let`
+- Use descriptive variable names
+- Extract reusable components (e.g., Logo component)
+- Use proper TypeScript types if applicable
+
+### State Management
+- Use `useState` for local component state
+- Use `useEffect` for side effects (scroll listeners, etc.)
+- Clean up event listeners in useEffect cleanup functions
+
+### Styling Conventions
+- Use Tailwind CSS utility classes exclusively
+- Group related classes logically (layout, spacing, colors, effects)
+- Use arbitrary values for custom colors: `bg-[#020808]`
+- Use responsive prefixes: `md:`, `lg:`, `sm:`
+- Prefer composition over custom CSS
+
+### Component Structure
+```jsx
+const ComponentName = () => {
+  // 1. State declarations
+  const [state, setState] = useState(initial);
+  
+  // 2. Effects
+  useEffect(() => {
+    // effect logic
+  }, [dependencies]);
+  
+  // 3. Helper functions
+  const handleAction = () => { /* ... */ };
+  
+  // 4. Data/constants
+  const data = [/* ... */];
+  
+  // 5. Render
+  return (/* JSX */);
+};
+```
+
+### Naming Conventions
+- **Components**: PascalCase (`NaylenceWebsite`, `Logo`)
+- **Functions**: camelCase (`toggleMenu`, `handleScroll`)
+- **Constants**: camelCase (`features`, `blogs`)
+- **CSS Classes**: Follow Tailwind conventions
+
+## File Organization
+
+### Current Structure
+```
+/
+├── index.html          # Main React component (should be .jsx/.tsx)
+├── vercel.json         # Vercel deployment config
+└── .cursorrules        # This file
+```
+
+### Recommended Structure (if expanding)
+```
+/
+├── src/
+│   ├── components/     # Reusable components
+│   ├── sections/       # Page sections
+│   ├── hooks/          # Custom hooks
+│   ├── utils/          # Utility functions
+│   └── assets/         # Images, fonts, etc.
+├── public/             # Static assets
+│   ├── swirl_dark_teal_darker_bg.png  # Logo
+│   └── swirl-original.png
+├── index.html          # Entry point
+├── package.json
+├── vite.config.js      # Build config
+└── vercel.json
+```
+
+## Common Patterns
+
+### Navigation
+- Fixed navbar with scroll-based styling changes
+- Mobile menu with toggle state
+- Smooth scroll to anchors
+
+### Sections
+- Full-width sections with `max-w-7xl mx-auto` containers
+- Consistent padding: `py-24` for sections
+- Responsive grid layouts: `grid md:grid-cols-3`
+
+### Buttons
+- Primary: `bg-teal-400 text-[#020808]` with hover effects
+- Secondary: `bg-teal-950/50 border border-teal-800/50`
+- Include icons from lucide-react
+- Use `transition-all` for smooth animations
+
+### Cards/Boxes
+- Background: `bg-[#020808]` or `bg-[#030c0c]`
+- Border: `border border-teal-900/30`
+- Hover: `hover:border-teal-500/50 hover:-translate-y-1`
+- Padding: `p-6` or `p-8`
+- Rounded: `rounded-xl`
+
+## Assets & Images
+
+### Logo
+- Primary: `/swirl_dark_teal_darker_bg.png`
+- Fallback: Gradient box with "N" letter
+- Error handling: `onError` callback to show fallback
+
+### Background Images
+- `/swirl-original.png` - Used as subtle background element
+- Very low opacity (`opacity-[0.03]`)
+- Positioned absolutely
+
+## Performance Considerations
+
+1. **Image Optimization**: Use appropriate formats (WebP, AVIF)
+2. **Lazy Loading**: Consider lazy loading images below the fold
+3. **Code Splitting**: If using bundler, implement route-based splitting
+4. **Font Loading**: Optimize font loading strategy
+5. **Bundle Size**: Monitor and optimize bundle size
+
+## Accessibility
+
+1. **Semantic HTML**: Use proper heading hierarchy
+2. **Alt Text**: Always provide alt text for images
+3. **ARIA Labels**: Add ARIA labels for icon-only buttons
+4. **Keyboard Navigation**: Ensure all interactive elements are keyboard accessible
+5. **Color Contrast**: Maintain WCAG AA contrast ratios
+6. **Focus States**: Visible focus indicators
+
+## Browser Support
+
+- Modern browsers (Chrome, Firefox, Safari, Edge)
+- Latest 2 versions
+- Mobile responsive (iOS Safari, Chrome Mobile)
+
+## Deployment
+
+### Vercel Configuration
+- Build command: `npm run build`
+- Output directory: `dist`
+- Framework: Auto-detected or null
+- All routes rewrite to `/index.html` for SPA routing
+
+### Environment Variables
+- None currently required
+- Add to `.env.local` if needed (don't commit)
+
+## Common Tasks & Commands
+
+### Development
+```bash
+npm run dev          # Start development server
+npm run build        # Build for production
+npm run preview      # Preview production build
+```
+
+### Code Quality
+- Use ESLint for linting
+- Use Prettier for formatting
+- Run type checking if using TypeScript
+
+### Git Workflow
+- Use descriptive commit messages
+- Create feature branches
+- Keep commits atomic
+
+## AI Assistant Guidelines
+
+When working on this project:
+
+1. **Maintain Design Consistency**: Always use the established color palette and design patterns
+2. **Responsive First**: Ensure all changes work on mobile, tablet, and desktop
+3. **Performance**: Optimize images, minimize re-renders, use proper React patterns
+4. **Accessibility**: Add proper ARIA labels, semantic HTML, keyboard navigation
+5. **Code Quality**: Follow the established patterns and conventions
+6. **Testing**: Test changes across different screen sizes and browsers
+
+## Specific Component Notes
+
+### Logo Component
+- Handles image loading errors gracefully
+- Falls back to gradient box with "N"
+- Reusable with className prop
+
+### Navigation
+- Fixed position with scroll-based styling
+- Mobile menu with overlay
+- Smooth scroll to anchors
+
+### Code Preview
+- Tabbed interface (Python/TypeScript)
+- Syntax highlighting via Tailwind text colors
+- Terminal-style window design
+
+### Blog Section
+- Grid layout (3 columns on desktop)
+- External links to Medium
+- Hover effects for interactivity
+
+## Future Enhancements
+
+Consider adding:
+- TypeScript migration
+- Component library/documentation
+- Animation library (Framer Motion)
+- Analytics integration
+- SEO optimization
+- Blog CMS integration
+- Contact form
+- Newsletter signup
+
+## Troubleshooting
+
+### Common Issues
+1. **Images not loading**: Check public folder path and file names
+2. **Styles not applying**: Verify Tailwind config and class names
+3. **Build errors**: Check Node version and dependencies
+4. **Vercel deployment**: Verify vercel.json configuration
+
+## Resources
+
+- [Tailwind CSS Docs](https://tailwindcss.com/docs)
+- [Lucide Icons](https://lucide.dev)
+- [React Docs](https://react.dev)
+- [Vercel Docs](https://vercel.com/docs)
+
